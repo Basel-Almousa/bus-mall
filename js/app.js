@@ -7,6 +7,7 @@ const rightImgElement = document.getElementById('right-img');
 const maxAttemps = 25;
 
 let counter = 0;
+let nameArr = [];
 
 function Product(name, source) {
     this.name = name;
@@ -14,9 +15,10 @@ function Product(name, source) {
     this.votes = 0;
     this.views = 0;
     Product.globArr.push(this);
+    nameArr.push(this.name);
+
 }
 Product.globArr = [];
-
 new Product('bag', 'img/bag.jpg');
 new Product('banana', 'img/banana.jpg');
 new Product('bathroom', 'img/bathroom.jpg');
@@ -56,62 +58,115 @@ function renderImges() {
         leftIdex = geneRandIndex();
         middelIdex = geneRandIndex();
     }
-
-    // console.log(leftIdex);
-    // console.log(middelIdex);
-    // console.log(rightIdex);
+    
 
     leftImgElement.src = Product.globArr[leftIdex].source;
+    Product.globArr[leftIdex].views++;
     middleImgElement.src = Product.globArr[middelIdex].source;
+    Product.globArr[middelIdex].views++;
     rightImgElement.src = Product.globArr[rightIdex].source;
+    Product.globArr[rightIdex].views++;
 
 }
 renderImges();
 
-leftImgElement.addEventListener('click', handleClick);
-middleImgElement.addEventListener('click', handleClick);
-rightImgElement.addEventListener('click', handleClick);
+// function notRepeat(){
+//     if (leftIdex === leftIdex || middelIdex === middelIdex || rightIdex === rightIdex) {
+//         leftIdex = geneRandIndex();
+//         middelIdex = geneRandIndex();
+//         rightIdex = geneRandIndex();
+//     }else {renderImges();
+    
+    
+// }
+// notRepeat();
+// renderImges();
 
+let votesArr = [];
+
+
+const section = document.getElementById('first');
+section.addEventListener('click', handleClick);
+
+let btnE;
 function handleClick(event) {
 
     counter++;
     if (maxAttemps >= counter) {
-        Product.globArr[leftIdex].views++;
-        Product.globArr[middelIdex].views++;
-        Product.globArr[rightIdex].views++;
+
         if (event.target.id === 'left-img') {
             Product.globArr[leftIdex].votes++;
         } else if (event.target.id === 'middle-img') {
             Product.globArr[middelIdex].votes++;
         } else if (event.target.id === 'right-img') {
             Product.globArr[rightIdex].votes++;
+        } else {
+            counter--;
+            return
         }
-        // console.log(Product.globArr);
         renderImges();
 
     } else {
-        renderList();
+        btnE = document.getElementById('btn');
+        btnE.addEventListener('click', handleShow);
+        section.removeEventListener('click', handleClick);
+
     }
 }
 
 // ====================================================
 
-function myFunction(){
-    document.getElementById(unList).renderList();
+function handleShow() {
+    renderList();
+    myGettingChart();
+    btnE.removeEventListener('click', handleShow);
+
 }
 
+let viewsArr = [];
 // ========================================================
 function renderList() {
 
     const ul = document.getElementById('unList');
 
     for (let i = 0; i < Product.globArr.length; i++) {
+        votesArr.push(Product.globArr[i].votes);
+        viewsArr.push(Product.globArr[i].views);
+        console.log(viewsArr);
+
         let li = document.createElement('li');
         ul.appendChild(li);
         li.textContent = `${Product.globArr[i].name} had ${Product.globArr[i].votes} votes, and was seen ${Product.globArr[i].views} times. `
     }
-    leftImgElement.removeEventListener('click', handleClick);
-    middleImgElement.removeEventListener('click', handleClick);
-    rightImgElement.removeEventListener('click', handleClick);
+}
 
+
+
+function myGettingChart() {
+
+    let ctx = document.getElementById('myChart');
+   
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: nameArr,
+            datasets: [{
+                label: '# of Votes',
+                data: votesArr,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1
+            }, {
+                label: '# of Views',
+                data: viewsArr,
+                backgroundColor: [
+                    'rgb(54, 162, 235)'
+                ]
+            }]
+        },
+    })
 }

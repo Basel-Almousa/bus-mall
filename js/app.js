@@ -95,10 +95,16 @@ function handleClick(event) {
 }
 
 // ====================================================
-
-function myFunction(){
-    document.getElementById(unList).renderList();
-}
+// let numberOfClicks = [];
+// let results = document.getElementById('update');
+// if (numberOfClicks === 25) {
+//     document.getElementById('update');
+//     update.style.visibility = 'visible';
+//   } else {
+//     document.getElementById('update');
+//     update.style.visibility = 'hidden';
+//     displayImg();
+//   }
 
 // ========================================================
 function renderList() {

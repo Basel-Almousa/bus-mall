@@ -24,9 +24,8 @@ body {
   #first{
     border: 3px solid rgb(7, 7, 7);
     background-color: lightgreen;
-    /* margin-right: 100px;
-    margin-left: 100px; */
-
+    margin-right: 100px;
+    margin-left: 100px;
   }
   header{
     background-color:lightyellow;

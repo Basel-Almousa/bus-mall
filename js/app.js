@@ -5,7 +5,9 @@ const middleImgElement = document.getElementById('middle-img');
 const rightImgElement = document.getElementById('right-img');
 
 const maxAttemps = 25;
+let votesArr = [];
 
+let viewsArr = [];
 let counter = 0;
 let nameArr = [];
 
@@ -58,7 +60,8 @@ function renderImges() {
         leftIdex = geneRandIndex();
         middelIdex = geneRandIndex();
     }
-    
+   
+
 
     leftImgElement.src = Product.globArr[leftIdex].source;
     Product.globArr[leftIdex].views++;
@@ -68,22 +71,37 @@ function renderImges() {
     Product.globArr[rightIdex].views++;
 
 }
+
 renderImges();
 
+
 // function notRepeat(){
-//     if (leftIdex === leftIdex || middelIdex === middelIdex || rightIdex === rightIdex) {
+//     while (leftIdex === Product.globArr[leftIdex] || rightIdex === Product.globArr[rightIdex] || middelIdex === Product.globArr[middelIdex]) {
 //         leftIdex = geneRandIndex();
 //         middelIdex = geneRandIndex();
 //         rightIdex = geneRandIndex();
-//     }else {renderImges();
-    
-    
+//     }
+
+
 // }
 // notRepeat();
-// renderImges();
 
-let votesArr = [];
+function saveTool(){
 
+    const convertedArr = JSON.stringify(Product.globArr);
+    localStorage.setItem('unList', convertedArr);
+}
+
+function getFormLs(){
+    const data = localStorage.getItem('unList');
+    if (data){
+        let parseUnlist = JSON.parse(data);
+        Product.globArr = parseUnlist;
+        renderList();
+    }
+}    
+
+getFormLs();
 
 const section = document.getElementById('first');
 section.addEventListener('click', handleClick);
@@ -111,7 +129,8 @@ function handleClick(event) {
         btnE.addEventListener('click', handleShow);
         section.removeEventListener('click', handleClick);
 
-    }
+    }saveTool();
+
 }
 
 // ====================================================
@@ -120,10 +139,9 @@ function handleShow() {
     renderList();
     myGettingChart();
     btnE.removeEventListener('click', handleShow);
-
 }
 
-let viewsArr = [];
+
 // ========================================================
 function renderList() {
 
@@ -140,12 +158,10 @@ function renderList() {
     }
 }
 
-
-
 function myGettingChart() {
 
     let ctx = document.getElementById('myChart');
-   
+
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {

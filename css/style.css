@@ -1,13 +1,13 @@
 body {
   background-color: rgb(44, 71, 75);
   animation-name: example;
-  animation-duration: 20s; ;
+  animation-duration: 50s; ;
     text-align: center
   }
   @keyframes example {
     0%   {background-color: rgb(195, 0, 255);}
-    10%   {background-color: rgb(192, 122, 122);}
-    20%   {background-color: rgb(112, 81, 81);}
+    10%   {background-color: rgb(255, 0, 200);}
+    20%   {background-color: rgb(0, 162, 255);}
   25%  {background-color: yellow;}
   50%  {background-color: blue;}
   75%  {background-color: rgb(255, 0, 0);}
@@ -24,6 +24,8 @@ body {
   #first{
     border: 3px solid rgb(7, 7, 7);
     background-color: lightgreen;
+    /* margin-right: 100px;
+    margin-left: 100px; */
 
   }
   header{
@@ -56,8 +58,9 @@ margin-top: -100px; */
   list-style: square inside url("sqpurple.gif");
   background:lightblue;
   padding: 20px;
-  text-align: left;
-  margin-right: 900px;
+  text-align:left;
+  margin-right: 400px;
+  margin-left: 400px;
   border: 3px solid rgb(0, 0, 0);
   
 }

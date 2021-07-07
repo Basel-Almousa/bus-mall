@@ -170,10 +170,10 @@ function myGettingChart() {
                 label: '# of Votes',
                 data: votesArr,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 99, 132, 0.9)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 99, 132, 30)',
                 ],
                 borderWidth: 1
             }, {

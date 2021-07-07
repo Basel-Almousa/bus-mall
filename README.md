@@ -1,1 +1,2 @@
 # bus-mall
+1- This project is for a mall buses which will give the passanger the ability to exploit their times while they are going to the mall. it will show the interests of the people about the best products that avalable in the mall by voting for them. It is such a great way that the Mall will be able to supply their stores with the most custumers favourite products. 

@@ -34,7 +34,7 @@ body {
     border: 3px solid rgb(5, 5, 5);
     font-weight: bolder;
     font-size: large;
-    background: url(/img/2.jpg) left no-repeat;
+    background: url(../img/2.jpg) left no-repeat;
 
   }
 
